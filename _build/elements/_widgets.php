@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'modExtra' => [
+    'rentacar' => [
         'description' => '',
         'type' => 'file',
         'content' => '',
-        'namespace' => 'modextra',
-        'lexicon' => 'modextra:dashboards',
+        'namespace' => 'rentacar',
+        'lexicon' => 'rentacar:dashboards',
         'size' => 'half',
     ],
 ];

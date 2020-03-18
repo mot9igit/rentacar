@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'modExtra' => [
-        'file' => 'modextra',
-        'description' => 'modExtra snippet to list items',
+    'rentacar' => [
+        'file' => 'rentacar',
+        'description' => 'rentacar snippet to list items',
         'properties' => [
             'tpl' => [
                 'type' => 'textfield',
-                'value' => 'tpl.modExtra.item',
+                'value' => 'tpl.rentacar.item',
             ],
             'sortby' => [
                 'type' => 'textfield',

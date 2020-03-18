@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="rentacar" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" phpdoc-package="rentacar"
+       version="1.1">
+
+    <object class="rentacar_cars" table="rentacar_cars" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="number" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="resource" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="region" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+        <index alias="number" name="number" primary="false" unique="false" type="BTREE">
+            <column key="number" length="" collation="A" null="false"/>
+        </index>
+        <index alias="region" name="region" primary="false" unique="false" type="BTREE">
+            <column key="region" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+        <aggregate alias="Resource" class="modResource" local="resource" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Region" class="modResource" local="region" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+    <object class="rentacar_cars_avaible" table="rentacar_cars_avaible" extends="xPDOSimpleObject">
+        <field key="order_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="date_on" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="date_off" dbtype="datetime" phptype="datetime" null="true" />
+        <field key="region_on" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="region_off" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+
+        <index alias="date_on" name="date_on" primary="false" unique="false" type="BTREE">
+            <column key="date_on" length="" collation="A" null="false"/>
+        </index>
+        <index alias="region_on" name="region_on" primary="false" unique="false" type="BTREE">
+            <column key="region_on" length="" collation="A" null="false"/>
+        </index>
+        <index alias="date_off" name="date_off" primary="false" unique="false" type="BTREE">
+            <column key="date_off" length="" collation="A" null="false"/>
+        </index>
+        <index alias="region_off" name="region_off" primary="false" unique="false" type="BTREE">
+            <column key="region_off" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+        <index alias="order_id" name="order_id" primary="false" unique="false" type="BTREE">
+            <column key="order_id" length="" collation="A" null="false"/>
+        </index>
+        <aggregate alias="Order" class="msOrder" local="order_id" foreign="id" owner="foreign" cardinality="one"/>
+        <aggregate alias="Region_On" class="modResource" local="region_on" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Region_Off" class="modResource" local="region_off" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+</model>

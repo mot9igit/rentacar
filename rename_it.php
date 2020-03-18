@@ -1,6 +1,6 @@
 <?php
 /**
- * Rename script for modExtra
+ * Rename script for rentacar
  *
  * @param string $new_name Name of new components
  * @param string $start Directory for find and replace in files old name to new name
@@ -19,7 +19,7 @@ if (empty($new_name)) {
 }
 // --
 
-$old_name = 'modExtra';
+$old_name = 'rentacar';
 $old_name_lower = strtolower($old_name);
 
 $dirs = scandir($start);
@@ -78,7 +78,7 @@ function rename_extra($start_path, $find = array(), $replace = array())
             $content = str_replace($find, $replace, $content);
 
             if ($item == 'home.class.php') {
-                $content = str_replace($replace[0] . 'ManagerController', 'modExtraManagerController', $content);
+                $content = str_replace($replace[0] . 'ManagerController', 'rentacarManagerController', $content);
             }
 
             file_put_contents($new_path, $content);

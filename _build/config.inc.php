@@ -9,8 +9,8 @@ if (!defined('MODX_CORE_PATH')) {
 }
 
 return [
-    'name' => 'modExtra',
-    'name_lower' => 'modextra',
+    'name' => 'rentacar',
+    'name_lower' => 'rentacar',
     'version' => '2.0.0',
     'release' => 'pl',
     // Install package to site right after build
@@ -21,7 +21,7 @@ return [
         'menus' => true,
         'plugins' => true,
         'resources' => false,
-        'settings' => false,
+        'settings' => true,
         'snippets' => true,
         'templates' => false,
         'widgets' => false,

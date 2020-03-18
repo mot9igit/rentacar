@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'tpl.modExtra.item' => [
+    'tpl.rentacar.item' => [
         'file' => 'item',
         'description' => '',
     ],
-    'tpl.modExtra.office' => [
+    'tpl.rentacar.office' => [
         'file' => 'office',
         'description' => '',
     ],
