@@ -1,0 +1,4 @@
+.form-control[readonly] {
+    background-color: #fff;
+    opacity: 1;
+}

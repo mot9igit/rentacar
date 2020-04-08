@@ -16,17 +16,17 @@ $outputSeparator = $modx->getOption('outputSeparator', $scriptProperties, "\n");
 $toPlaceholder = $modx->getOption('toPlaceholder', $scriptProperties, false);
 
 // Build query
-$c = $modx->newQuery('rentacarItem');
+$c = $modx->newQuery('msOrder');
 $c->sortby($sortby, $sortdir);
 $c->where(['active' => 1]);
-$c->limit($limit);
-$items = $modx->getIterator('rentacarItem', $c);
+//$c->limit($limit);
+$items = $modx->getIterator('msOrder', $c);
 
 // Iterate through items
 $list = [];
 /** @var rentacarItem $item */
 foreach ($items as $item) {
-    $list[] = $modx->getChunk($tpl, $item->toArray());
+    $list[] = $item->toArray();
 }
 
 // Output
@@ -38,4 +38,4 @@ if (!empty($toPlaceholder)) {
     return '';
 }
 // By default just return output
-return $output;
+print_r($list);

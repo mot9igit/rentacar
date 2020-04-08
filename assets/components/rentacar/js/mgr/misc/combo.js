@@ -46,3 +46,26 @@ Ext.extend(rentacar.combo.Search, Ext.form.TwinTriggerField, {
 });
 Ext.reg('rentacar-combo-search', rentacar.combo.Search);
 Ext.reg('rentacar-field-search', rentacar.combo.Search);
+
+var typeitems = new Ext.data.ArrayStore({
+        id: 'type-items'
+        ,fields: ['type',{name: 'display', type: 'string'}]
+        ,data: [
+            [1, _('rentacar_option_type_1')],
+            [2, _('rentacar_option_type_2')],
+            [3, _('rentacar_option_type_3')]
+        ]
+});
+rentacar.combo.type = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        store: typeitems
+        ,displayField: 'display'
+        ,valueField: 'type'
+        ,hiddenName: 'type'
+        ,mode: 'local'
+    });
+    rentacar.combo.type.superclass.constructor.call(this,config);
+};
+Ext.extend(rentacar.combo.type,MODx.combo.ComboBox);
+Ext.reg('combo-type',rentacar.combo.type);

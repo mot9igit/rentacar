@@ -56,8 +56,10 @@ class rentacarHomeManagerController extends modExtraManagerController
         $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/rentacar.js');
         $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/misc/utils.js');
         $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/misc/combo.js');
-        $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/widgets/items.grid.js');
-        $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/widgets/items.windows.js');
+        $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/widgets/car_options.grid.js');
+        $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/widgets/car_options.windows.js');
+		$this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/widgets/car_warranty.grid.js');
+		$this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/widgets/car_warranty.windows.js');
         $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/widgets/home.panel.js');
         $this->addJavascript($this->rentacar->config['jsUrl'] . 'mgr/sections/home.js');
 

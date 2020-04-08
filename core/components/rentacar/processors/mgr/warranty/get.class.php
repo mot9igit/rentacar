@@ -1,9 +1,9 @@
 <?php
 
-class rentacarItemGetProcessor extends modObjectGetProcessor
+class rentacarWarrantyGetProcessor extends modObjectGetProcessor
 {
-    public $objectType = 'rentacarItem';
-    public $classKey = 'rentacarItem';
+    public $objectType = 'rentacar_cars_warranty';
+    public $classKey = 'rentacar_cars_warranty';
     public $languageTopics = ['rentacar:default'];
     //public $permission = 'view';
 
@@ -25,4 +25,4 @@ class rentacarItemGetProcessor extends modObjectGetProcessor
 
 }
 
-return 'rentacarItemGetProcessor';
+return 'rentacarWarrantyGetProcessor';

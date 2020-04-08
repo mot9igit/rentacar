@@ -1,9 +1,9 @@
 <?php
 
-class rentacarItemUpdateProcessor extends modObjectUpdateProcessor
+class rentacarOptionUpdateProcessor extends modObjectUpdateProcessor
 {
-    public $objectType = 'rentacarItem';
-    public $classKey = 'rentacarItem';
+    public $objectType = 'rentacar_cars_options';
+    public $classKey = 'rentacar_cars_options';
     public $languageTopics = ['rentacar'];
     //public $permission = 'save';
 
@@ -32,17 +32,17 @@ class rentacarItemUpdateProcessor extends modObjectUpdateProcessor
         $id = (int)$this->getProperty('id');
         $name = trim($this->getProperty('name'));
         if (empty($id)) {
-            return $this->modx->lexicon('rentacar_item_err_ns');
+            return $this->modx->lexicon('rentacar_option_err_ns');
         }
 
         if (empty($name)) {
-            $this->modx->error->addField('name', $this->modx->lexicon('rentacar_item_err_name'));
+            $this->modx->error->addField('name', $this->modx->lexicon('rentacar_option_err_name'));
         } elseif ($this->modx->getCount($this->classKey, ['name' => $name, 'id:!=' => $id])) {
-            $this->modx->error->addField('name', $this->modx->lexicon('rentacar_item_err_ae'));
+            $this->modx->error->addField('name', $this->modx->lexicon('rentacar_option_err_ae'));
         }
 
         return parent::beforeSet();
     }
 }
 
-return 'rentacarItemUpdateProcessor';
+return 'rentacarOptionUpdateProcessor';

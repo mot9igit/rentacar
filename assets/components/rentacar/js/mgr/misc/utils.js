@@ -4,6 +4,26 @@ rentacar.utils.renderBoolean = function (value) {
         : String.format('<span class="red">{0}</span>', _('no'));
 };
 
+rentacar.utils.renderImage = function (value) {
+    if (Ext.isEmpty(value)) {
+        value = rentacar.config['default_thumb'];
+    }
+    else {
+        if (!/\/\//.test(value)) {
+            if (!/^\//.test(value)) {
+                value = '/' + value;
+            }
+        }
+    }
+
+    return String.format('<img src="{0}" />', value);
+};
+
+rentacar.utils.renderOptionType = function (value) {
+    var name = 'rentacar_option_type_'+value;
+    return _(name);
+};
+
 rentacar.utils.getMenu = function (actions, grid, selected) {
     var menu = [];
     var cls, icon, title, action;

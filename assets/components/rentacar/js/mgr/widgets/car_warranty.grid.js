@@ -1,7 +1,7 @@
-rentacar.grid.Items = function (config) {
+rentacar.grid.Warrantys = function (config) {
     config = config || {};
     if (!config.id) {
-        config.id = 'rentacar-grid-items';
+        config.id = 'rentacar-grid-warrantys';
     }
     Ext.applyIf(config, {
         url: rentacar.config.connector_url,
@@ -10,12 +10,14 @@ rentacar.grid.Items = function (config) {
         tbar: this.getTopBar(config),
         sm: new Ext.grid.CheckboxSelectionModel(),
         baseParams: {
-            action: 'mgr/item/getlist'
+            action: 'mgr/warranty/getlist',
+            sort: 'id',
+            dir: 'desc'
         },
         listeners: {
             rowDblClick: function (grid, rowIndex, e) {
                 var row = grid.store.getAt(rowIndex);
-                this.updateItem(grid, e, row);
+                this.updateWarranty(grid, e, row);
             }
         },
         viewConfig: {
@@ -34,7 +36,7 @@ rentacar.grid.Items = function (config) {
         remoteSort: true,
         autoHeight: true,
     });
-    rentacar.grid.Items.superclass.constructor.call(this, config);
+    rentacar.grid.Warrantys.superclass.constructor.call(this, config);
 
     // Clear selection on grid refresh
     this.store.on('load', function () {
@@ -43,184 +45,13 @@ rentacar.grid.Items = function (config) {
         }
     }, this);
 };
-Ext.extend(rentacar.grid.Items, MODx.grid.Grid, {
+Ext.extend(rentacar.grid.Warrantys, MODx.grid.Grid, {
     windows: {},
-
-    getMenu: function (grid, rowIndex) {
-        var ids = this._getSelectedIds();
-
-        var row = grid.getStore().getAt(rowIndex);
-        var menu = rentacar.utils.getMenu(row.data['actions'], this, ids);
-
-        this.addContextMenuItem(menu);
-    },
-
-    createItem: function (btn, e) {
-        var w = MODx.load({
-            xtype: 'rentacar-item-window-create',
-            id: Ext.id(),
-            listeners: {
-                success: {
-                    fn: function () {
-                        this.refresh();
-                    }, scope: this
-                }
-            }
-        });
-        w.reset();
-        w.setValues({active: true});
-        w.show(e.target);
-    },
-
-    updateItem: function (btn, e, row) {
-        if (typeof(row) != 'undefined') {
-            this.menu.record = row.data;
-        }
-        else if (!this.menu.record) {
-            return false;
-        }
-        var id = this.menu.record.id;
-
-        MODx.Ajax.request({
-            url: this.config.url,
-            params: {
-                action: 'mgr/item/get',
-                id: id
-            },
-            listeners: {
-                success: {
-                    fn: function (r) {
-                        var w = MODx.load({
-                            xtype: 'rentacar-item-window-update',
-                            id: Ext.id(),
-                            record: r,
-                            listeners: {
-                                success: {
-                                    fn: function () {
-                                        this.refresh();
-                                    }, scope: this
-                                }
-                            }
-                        });
-                        w.reset();
-                        w.setValues(r.object);
-                        w.show(e.target);
-                    }, scope: this
-                }
-            }
-        });
-    },
-
-    removeItem: function () {
-        var ids = this._getSelectedIds();
-        if (!ids.length) {
-            return false;
-        }
-        MODx.msg.confirm({
-            title: ids.length > 1
-                ? _('rentacar_items_remove')
-                : _('rentacar_item_remove'),
-            text: ids.length > 1
-                ? _('rentacar_items_remove_confirm')
-                : _('rentacar_item_remove_confirm'),
-            url: this.config.url,
-            params: {
-                action: 'mgr/item/remove',
-                ids: Ext.util.JSON.encode(ids),
-            },
-            listeners: {
-                success: {
-                    fn: function () {
-                        this.refresh();
-                    }, scope: this
-                }
-            }
-        });
-        return true;
-    },
-
-    disableItem: function () {
-        var ids = this._getSelectedIds();
-        if (!ids.length) {
-            return false;
-        }
-        MODx.Ajax.request({
-            url: this.config.url,
-            params: {
-                action: 'mgr/item/disable',
-                ids: Ext.util.JSON.encode(ids),
-            },
-            listeners: {
-                success: {
-                    fn: function () {
-                        this.refresh();
-                    }, scope: this
-                }
-            }
-        })
-    },
-
-    enableItem: function () {
-        var ids = this._getSelectedIds();
-        if (!ids.length) {
-            return false;
-        }
-        MODx.Ajax.request({
-            url: this.config.url,
-            params: {
-                action: 'mgr/item/enable',
-                ids: Ext.util.JSON.encode(ids),
-            },
-            listeners: {
-                success: {
-                    fn: function () {
-                        this.refresh();
-                    }, scope: this
-                }
-            }
-        })
-    },
-
-    getFields: function () {
-        return ['id', 'name', 'description', 'active', 'actions'];
-    },
-
-    getColumns: function () {
-        return [{
-            header: _('rentacar_item_id'),
-            dataIndex: 'id',
-            sortable: true,
-            width: 70
-        }, {
-            header: _('rentacar_item_name'),
-            dataIndex: 'name',
-            sortable: true,
-            width: 200,
-        }, {
-            header: _('rentacar_item_description'),
-            dataIndex: 'description',
-            sortable: false,
-            width: 250,
-        }, {
-            header: _('rentacar_item_active'),
-            dataIndex: 'active',
-            renderer: rentacar.utils.renderBoolean,
-            sortable: true,
-            width: 100,
-        }, {
-            header: _('rentacar_grid_actions'),
-            dataIndex: 'actions',
-            renderer: rentacar.utils.renderActions,
-            sortable: false,
-            width: 100,
-            id: 'actions'
-        }];
-    },
 
     getTopBar: function () {
         return [{
-            text: '<i class="icon icon-plus"></i>&nbsp;' + _('rentacar_item_create'),
-            handler: this.createItem,
+            text: '<i class="icon icon-plus"></i>&nbsp;' + _('rentacar_warranty_create'),
+            handler: this.createWarranty,
             scope: this
         }, '->', {
             xtype: 'rentacar-field-search',
@@ -241,6 +72,195 @@ Ext.extend(rentacar.grid.Items, MODx.grid.Grid, {
         }];
     },
 
+    getFields: function () {
+        return ['id', 'name', 'price', 'price_perday', 'checked','description', 'active', 'actions'];
+    },
+
+    getColumns: function () {
+        return [{
+            header: _('rentacar_warranty_id'),
+            dataIndex: 'id',
+            sortable: true,
+            width: 70
+        }, {
+            header: _('rentacar_warranty_name'),
+            dataIndex: 'name',
+            sortable: true,
+            width: 200,
+        }, {
+            header: _('rentacar_warranty_price'),
+            dataIndex: 'price',
+            //xtype: 'numberfield',
+            decimalPrecision: 2,
+            sortable: true,
+            width: 200,
+        }, {
+            header: _('rentacar_warranty_price_perday'),
+            dataIndex: 'price_perday',
+            renderer: rentacar.utils.renderBoolean,
+            sortable: true,
+            width: 100,
+        }, {
+            header: _('rentacar_warranty_checked'),
+            dataIndex: 'checked',
+            renderer: rentacar.utils.renderBoolean,
+            sortable: true,
+            width: 100,
+        }, {
+            header: _('rentacar_warranty_description'),
+            dataIndex: 'description',
+            sortable: false,
+            width: 250,
+        }, {
+            header: _('rentacar_warranty_active'),
+            dataIndex: 'active',
+            renderer: rentacar.utils.renderBoolean,
+            sortable: true,
+            width: 100,
+        }, {
+            header: _('rentacar_warranty_actions'),
+            dataIndex: 'actions',
+            renderer: rentacar.utils.renderActions,
+            sortable: false,
+            width: 100,
+            id: 'actions'
+        }];
+    },
+
+    getMenu: function (grid, rowIndex) {
+        var ids = this._getSelectedIds();
+
+        var row = grid.getStore().getAt(rowIndex);
+        var menu = rentacar.utils.getMenu(row.data['actions'], this, ids);
+
+        this.addContextMenuItem(menu);
+    },
+
+    createWarranty: function (btn, e) {
+        var w = MODx.load({
+            xtype: 'rentacar-warranty-window-create',
+            id: Ext.id(),
+            listeners: {
+                success: {
+                    fn: function () {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        });
+        w.reset();
+        w.setValues({active: true});
+        w.show(e.target);
+    },
+
+    updateWarranty: function (btn, e, row) {
+        if (typeof(row) != 'undefined') {
+            this.menu.record = row.data;
+        }
+        else if (!this.menu.record) {
+            return false;
+        }
+        var id = this.menu.record.id;
+
+        MODx.Ajax.request({
+            url: this.config.url,
+            params: {
+                action: 'mgr/warranty/get',
+                id: id
+            },
+            listeners: {
+                success: {
+                    fn: function (r) {
+                        var w = MODx.load({
+                            xtype: 'rentacar-warranty-window-update',
+                            id: Ext.id(),
+                            record: r,
+                            listeners: {
+                                success: {
+                                    fn: function () {
+                                        this.refresh();
+                                    }, scope: this
+                                }
+                            }
+                        });
+                        w.reset();
+                        w.setValues(r.object);
+                        w.show(e.target);
+                    }, scope: this
+                }
+            }
+        });
+    },
+
+    removeWarranty: function () {
+        var ids = this._getSelectedIds();
+        if (!ids.length) {
+            return false;
+        }
+        MODx.msg.confirm({
+            title: ids.length > 1
+                ? _('rentacar_warrantys_remove')
+                : _('rentacar_warranty_remove'),
+            text: ids.length > 1
+                ? _('rentacar_warrantys_remove_confirm')
+                : _('rentacar_warranty_remove_confirm'),
+            url: this.config.url,
+            params: {
+                action: 'mgr/warranty/remove',
+                ids: Ext.util.JSON.encode(ids),
+            },
+            listeners: {
+                success: {
+                    fn: function () {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        });
+        return true;
+    },
+
+    disableWarranty: function () {
+        var ids = this._getSelectedIds();
+        if (!ids.length) {
+            return false;
+        }
+        MODx.Ajax.request({
+            url: this.config.url,
+            params: {
+                action: 'mgr/warranty/disable',
+                ids: Ext.util.JSON.encode(ids),
+            },
+            listeners: {
+                success: {
+                    fn: function () {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        })
+    },
+
+    enableWarranty: function () {
+        var ids = this._getSelectedIds();
+        if (!ids.length) {
+            return false;
+        }
+        MODx.Ajax.request({
+            url: this.config.url,
+            params: {
+                action: 'mgr/warranty/enable',
+                ids: Ext.util.JSON.encode(ids),
+            },
+            listeners: {
+                success: {
+                    fn: function () {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        })
+    },
     onClick: function (e) {
         var elem = e.getTarget();
         if (elem.nodeName == 'BUTTON') {
@@ -284,4 +304,4 @@ Ext.extend(rentacar.grid.Items, MODx.grid.Grid, {
         this.getBottomToolbar().changePage(1);
     },
 });
-Ext.reg('rentacar-grid-items', rentacar.grid.Items);
+Ext.reg('rentacar-grid-warrantys', rentacar.grid.Warrantys);

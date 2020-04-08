@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'rentacar' => [
-        'file' => 'rentacar',
-        'description' => 'rentacar snippet to list items',
+    'getOffers' => [
+        'file' => 'getOffers',
+        'description' => 'offers of users',
         'properties' => [
             'tpl' => [
                 'type' => 'textfield',
@@ -35,4 +35,24 @@ return [
             ],
         ],
     ],
+	'getActualPrices' => [
+		'file' => 'getActualPrices',
+		'description' => 'ActualPrices',
+		'properties' => [],
+	],
+	'checkCity' => [
+		'file' => 'checkCity',
+		'description' => 'Check region',
+		'properties' => [],
+	],
+	'getCarOptions' => [
+		'file' => 'getCarOptions',
+		'description' => 'getCarOptions',
+		'properties' => [],
+	],
+	'getCarWarrantys' => [
+		'file' => 'getCarWarrantys',
+		'description' => 'getCarWarrantys',
+		'properties' => [],
+	]
 ];

@@ -20,13 +20,43 @@ rentacar.panel.Home = function (config) {
             border: true,
             hideMode: 'offsets',
             items: [{
-                title: _('rentacar_items'),
+                title: _('rentacar_cars'),
                 layout: 'anchor',
                 items: [{
-                    html: _('rentacar_intro_msg'),
+                    html: _('rentacar_cars_intro_msg'),
+                    cls: 'panel-desc',
+                    }, {
+                        //xtype: 'rentacar-cars-grid-items',
+                        cls: 'main-wrapper',
+                    }]
+                },{
+                    title: _('rentacar_cars_avaible'),
+                    layout: 'anchor',
+                    items: [{
+                        html: _('rentacar_cars_avaible_intro_msg'),
+                        cls: 'panel-desc',
+                    }, {
+                        //xtype: 'rentacar-cars-avaible-grid-items',
+                        cls: 'main-wrapper',
+                    }]
+                },{
+                    title: _('rentacar_cars_options'),
+                    layout: 'anchor',
+                    items: [{
+                        html: _('rentacar_cars_options_intro_msg'),
+                        cls: 'panel-desc',
+                    }, {
+                        xtype: 'rentacar-grid-options',
+                        cls: 'main-wrapper',
+                    }]
+                },{
+                title: _('rentacar_cars_warranty'),
+                layout: 'anchor',
+                items: [{
+                    html: _('rentacar_cars_warranty_intro_msg'),
                     cls: 'panel-desc',
                 }, {
-                    xtype: 'rentacar-grid-items',
+                    xtype: 'rentacar-grid-warrantys',
                     cls: 'main-wrapper',
                 }]
             }]

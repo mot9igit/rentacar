@@ -4,6 +4,7 @@
 
     <object class="rentacar_cars" table="rentacar_cars" extends="xPDOSimpleObject">
         <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="photo" dbtype="text" phptype="string" null="true" default=""/>
         <field key="number" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
         <field key="resource" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
         <field key="region" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
@@ -56,6 +57,76 @@
         <aggregate alias="Order" class="msOrder" local="order_id" foreign="id" owner="foreign" cardinality="one"/>
         <aggregate alias="Region_On" class="modResource" local="region_on" foreign="id" cardinality="one" owner="foreign"/>
         <aggregate alias="Region_Off" class="modResource" local="region_off" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+    <object class="rentacar_cars_options" table="rentacar_cars_options" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="price" dbtype="decimal" precision="12,2" phptype="float" null="false" default="0"/>
+        <field key="free_count" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="price_perday" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
+        <field key="type" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"/>
+        <field key="checked" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
+
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="1"/>
+
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+        <index alias="price" name="price" primary="false" unique="false" type="BTREE">
+            <column key="price" length="" collation="A" null="false"/>
+        </index>
+        <index alias="type" name="type" primary="false" unique="false" type="BTREE">
+            <column key="type" length="" collation="A" null="false"/>
+        </index>
+        <index alias="checked" name="checked" primary="false" unique="false" type="BTREE">
+            <column key="checked" length="" collation="A" null="false"/>
+        </index>
+        <index alias="free_count" name="free_count" primary="false" unique="false" type="BTREE">
+            <column key="free_count" length="" collation="A" null="false"/>
+        </index>
+        <index alias="price_perday" name="price_perday" primary="false" unique="false" type="BTREE">
+            <column key="price_perday" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
+    </object>
+
+    <object class="rentacar_cars_offer_add" table="rentacar_cars_offer_add" extends="xPDOSimpleObject">
+        <field key="order_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="option_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="warranty_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <aggregate alias="Order" class="msOrder" local="order_id" foreign="id" owner="foreign" cardinality="one"/>
+        <aggregate alias="Option" class="rentacar_cars_options" local="option_id" foreign="id" cardinality="one" owner="foreign"/>
+        <aggregate alias="Warranty" class="rentacar_cars_warranty" local="warranty_id" foreign="id" cardinality="one" owner="foreign"/>
+    </object>
+
+    <object class="rentacar_cars_warranty" table="rentacar_cars_warranty" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="price" dbtype="decimal" precision="12,2" phptype="float" null="false" default="0"/>
+        <field key="price_perday" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
+        <field key="checked" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
+
+        <field key="description" dbtype="text" phptype="string" null="true" default=""/>
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="1"/>
+
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false"/>
+        </index>
+        <index alias="price" name="price" primary="false" unique="false" type="BTREE">
+            <column key="price" length="" collation="A" null="false"/>
+        </index>
+        <index alias="checked" name="checked" primary="false" unique="false" type="BTREE">
+            <column key="checked" length="" collation="A" null="false"/>
+        </index>
+        <index alias="price_perday" name="price_perday" primary="false" unique="false" type="BTREE">
+            <column key="price_perday" length="" collation="A" null="false"/>
+        </index>
+        <index alias="active" name="active" primary="false" unique="false" type="BTREE">
+            <column key="active" length="" collation="A" null="false"/>
+        </index>
     </object>
 
 </model>

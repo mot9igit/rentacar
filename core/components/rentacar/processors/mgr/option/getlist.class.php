@@ -1,9 +1,9 @@
 <?php
 
-class rentacarItemGetListProcessor extends modObjectGetListProcessor
+class rentacarOptionGetListProcessor extends modObjectGetListProcessor
 {
-    public $objectType = 'rentacarItem';
-    public $classKey = 'rentacarItem';
+    public $objectType = 'rentacar_cars_options';
+    public $classKey = 'rentacar_cars_options';
     public $defaultSortField = 'id';
     public $defaultSortDirection = 'DESC';
     //public $permission = 'list';
@@ -58,9 +58,9 @@ class rentacarItemGetListProcessor extends modObjectGetListProcessor
         $array['actions'][] = [
             'cls' => '',
             'icon' => 'icon icon-edit',
-            'title' => $this->modx->lexicon('rentacar_item_update'),
-            //'multiple' => $this->modx->lexicon('rentacar_items_update'),
-            'action' => 'updateItem',
+            'title' => $this->modx->lexicon('rentacar_option_update'),
+            //'multiple' => $this->modx->lexicon('rentacar_options_update'),
+            'action' => 'updateOption',
             'button' => true,
             'menu' => true,
         ];
@@ -69,9 +69,9 @@ class rentacarItemGetListProcessor extends modObjectGetListProcessor
             $array['actions'][] = [
                 'cls' => '',
                 'icon' => 'icon icon-power-off action-green',
-                'title' => $this->modx->lexicon('rentacar_item_enable'),
-                'multiple' => $this->modx->lexicon('rentacar_items_enable'),
-                'action' => 'enableItem',
+                'title' => $this->modx->lexicon('rentacar_option_enable'),
+                'multiple' => $this->modx->lexicon('rentacar_options_enable'),
+                'action' => 'enableOption',
                 'button' => true,
                 'menu' => true,
             ];
@@ -79,9 +79,9 @@ class rentacarItemGetListProcessor extends modObjectGetListProcessor
             $array['actions'][] = [
                 'cls' => '',
                 'icon' => 'icon icon-power-off action-gray',
-                'title' => $this->modx->lexicon('rentacar_item_disable'),
-                'multiple' => $this->modx->lexicon('rentacar_items_disable'),
-                'action' => 'disableItem',
+                'title' => $this->modx->lexicon('rentacar_option_disable'),
+                'multiple' => $this->modx->lexicon('rentacar_options_disable'),
+                'action' => 'disableOption',
                 'button' => true,
                 'menu' => true,
             ];
@@ -91,9 +91,9 @@ class rentacarItemGetListProcessor extends modObjectGetListProcessor
         $array['actions'][] = [
             'cls' => '',
             'icon' => 'icon icon-trash-o action-red',
-            'title' => $this->modx->lexicon('rentacar_item_remove'),
-            'multiple' => $this->modx->lexicon('rentacar_items_remove'),
-            'action' => 'removeItem',
+            'title' => $this->modx->lexicon('rentacar_option_remove'),
+            'multiple' => $this->modx->lexicon('rentacar_options_remove'),
+            'action' => 'removeOption',
             'button' => true,
             'menu' => true,
         ];
@@ -103,4 +103,4 @@ class rentacarItemGetListProcessor extends modObjectGetListProcessor
 
 }
 
-return 'rentacarItemGetListProcessor';
+return 'rentacarOptionGetListProcessor';
