@@ -18,6 +18,12 @@ $pdoFetch = new pdoFetch($modx, $scriptProperties);
 if($pdoFetch){
 	foreach($options as $option){
 		$data['options'][] = $option->toArray();
+		if($offer_warrantys){
+			$data['offer_warrantys'] = $offer_warrantys;
+		}
+		if($offer_cars){
+			$data['offer_cars'] = $offer_cars;
+		}
 	}
 	echo $pdoFetch->getChunk($tpl, $data);
 }else{

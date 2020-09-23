@@ -29,6 +29,7 @@
 
     <object class="rentacar_cars_avaible" table="rentacar_cars_avaible" extends="xPDOSimpleObject">
         <field key="order_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="car_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
         <field key="date_on" dbtype="datetime" phptype="datetime" null="true" />
         <field key="date_off" dbtype="datetime" phptype="datetime" null="true" />
         <field key="region_on" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
@@ -55,6 +56,7 @@
             <column key="order_id" length="" collation="A" null="false"/>
         </index>
         <aggregate alias="Order" class="msOrder" local="order_id" foreign="id" owner="foreign" cardinality="one"/>
+        <aggregate alias="Car" class="rentacar_cars" local="car_id" foreign="id" owner="foreign" cardinality="one"/>
         <aggregate alias="Region_On" class="modResource" local="region_on" foreign="id" cardinality="one" owner="foreign"/>
         <aggregate alias="Region_Off" class="modResource" local="region_off" foreign="id" cardinality="one" owner="foreign"/>
     </object>
@@ -66,6 +68,8 @@
                default="0"/>
         <field key="price_perday" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
         <field key="type" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"/>
+        <field key="counted" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
+        <field key="hidden" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
         <field key="checked" dbtype="tinyint" precision="1" phptype="boolean" null="false" default="0"/>
 
         <field key="description" dbtype="text" phptype="string" null="true" default=""/>
@@ -98,6 +102,9 @@
         <field key="order_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
         <field key="option_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
         <field key="warranty_id" dbtype="int" precision="10" phptype="integer" null="false" default=""/>
+        <field key="count" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false"
+               default="0"/>
+        <field key="price" dbtype="decimal" precision="12,2" phptype="float" null="false" default="0"/>
         <aggregate alias="Order" class="msOrder" local="order_id" foreign="id" owner="foreign" cardinality="one"/>
         <aggregate alias="Option" class="rentacar_cars_options" local="option_id" foreign="id" cardinality="one" owner="foreign"/>
         <aggregate alias="Warranty" class="rentacar_cars_warranty" local="warranty_id" foreign="id" cardinality="one" owner="foreign"/>
@@ -128,5 +135,4 @@
             <column key="active" length="" collation="A" null="false"/>
         </index>
     </object>
-
 </model>

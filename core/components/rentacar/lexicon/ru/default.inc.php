@@ -9,6 +9,11 @@ $_lang['rentacar_cars'] = "Авто";
 $_lang['rentacar_cars_intro_msg'] = "Доступные для заказа авто";
 $_lang['rentacar_cars_avaible'] = "Подтвержденные бронирования";
 $_lang['rentacar_cars_avaible_intro_msg'] = "Бронирования на авто";
+$_lang["rentacar_logout"] = "Выйти";
+
+$_lang['rentacar_rentacars'] = "Аренда авто в Греции";
+$_lang['rentacar_registration'] = "Вход / Регистрация";
+$_lang['rentacar_allday_allnight'] = "Круглосуточно";
 
 $_lang['rentacar_cars_options'] = 'Опции авто';
 $_lang['rentacar_cars_options_intro_msg'] = 'На данной странице Вы можете управлять опциями авто.';
@@ -21,6 +26,8 @@ $_lang['rentacar_option_type'] = 'Тип';
 $_lang['rentacar_option_type_1'] = 'Тип по умолчанию';
 $_lang['rentacar_option_type_2'] = 'Не рабочее время';
 $_lang['rentacar_option_type_3'] = 'Доставка';
+$_lang['rentacar_option_counted'] = 'Можно менять количество';
+$_lang['rentacar_option_hidden'] = 'Скрыто от пользователя';
 $_lang['rentacar_option_free_count'] = 'Бесплатно до';
 $_lang['rentacar_option_price_perday'] = 'Стоимость за сутки';
 $_lang['rentacar_option_checked'] = 'Отмечено';
@@ -37,6 +44,30 @@ $_lang['rentacar_options_remove'] = 'Удалить опции';
 $_lang['rentacar_option_remove_confirm'] = 'Вы уверены, что хотите удалить эту опцию?';
 $_lang['rentacar_options_remove_confirm'] = 'Вы уверены, что хотите удалить эти опции?';
 $_lang['rentacar_option_active'] = 'Включено';
+
+$_lang['rentacar_cars'] = 'Доступные авто';
+$_lang['rentacar_cars_options_intro_msg'] = 'На данной странице Вы можете управлять доступными авто.';
+$_lang['rentacar_car_id'] = 'ID';
+$_lang['rentacar_car_name'] = 'Наименование';
+$_lang['rentacar_car_description'] = 'Описание';
+$_lang['rentacar_car_active'] = 'Активно';
+$_lang['rentacar_car_photo'] = 'Изображение';
+$_lang['rentacar_car_number'] = 'Номер';
+$_lang['rentacar_car_resource'] = 'Привязанный ресурс';
+$_lang['rentacar_car_region'] = 'Регион доступности';
+$_lang['rentacar_car_actions'] = 'Действия';
+
+$_lang['rentacar_car_create'] = 'Создать авто';
+$_lang['rentacar_car_update'] = 'Изменить авто';
+$_lang['rentacar_car_enable'] = 'Включить авто';
+$_lang['rentacar_cars_enable'] = 'Включить авто';
+$_lang['rentacar_car_disable'] = 'Отключить авто';
+$_lang['rentacar_cars_disable'] = 'Отключить авто';
+$_lang['rentacar_car_remove'] = 'Удалить авто';
+$_lang['rentacar_cars_remove'] = 'Удалить авто';
+$_lang['rentacar_car_remove_confirm'] = 'Вы уверены, что хотите удалить это авто?';
+$_lang['rentacar_cars_remove_confirm'] = 'Вы уверены, что хотите удалить эти авто?';
+$_lang['rentacar_car_active'] = 'Включено';
 
 $_lang['rentacar_cars_warranty'] = 'Страховки';
 $_lang['rentacar_cars_warranty_intro_msg'] = 'Управление страховками для авто.';
@@ -67,12 +98,41 @@ $_lang['rentacar_warranty_item_1_description'] = 'Мы оплатим несча
 $_lang['rentacar_warranty_item_2_name'] = 'Полное страхование';
 $_lang['rentacar_warranty_item_2_description'] = 'Что бы не случилось с машиной, оплатим ремонт сами';
 
+$_lang['rentacar_option_item_2_name'] = '24/7 дорожная служба';
+$_lang['rentacar_option_item_2_description'] = '';
+$_lang['rentacar_option_item_3_name'] = 'Быстрая замена при поломке';
+$_lang['rentacar_option_item_3_description'] = '';
+$_lang['rentacar_option_item_4_name'] = 'Дополнительный водитель';
+$_lang['rentacar_option_item_4_description'] = '';
+$_lang['rentacar_option_item_5_name'] = 'Детское кресло';
+$_lang['rentacar_option_item_5_description'] = '';
+$_lang['rentacar_option_item_6_name'] = 'Неограниченный пробег';
+$_lang['rentacar_option_item_6_description'] = '';
+$_lang['rentacar_option_item_7_name'] = 'Цепи от проскальзывания';
+$_lang['rentacar_option_item_7_description'] = '';
+$_lang['rentacar_option_item_8_name'] = 'Полный бак';
+$_lang['rentacar_option_item_8_description'] = '';
+$_lang['rentacar_option_item_9_from_name'] = 'Сбор за доставку в нерабочее время';
+$_lang['rentacar_option_item_9_to_name'] = 'Сбор за возврат в нерабочее время';
+$_lang['rentacar_option_item_9_description'] = '';
+$_lang['rentacar_option_item_10_name'] = 'Доставка';
+$_lang['rentacar_option_item_10_description'] = '';
+$_lang['rentacar_option_item_11_name'] = 'Бустер 5+';
+$_lang['rentacar_option_item_11_description'] = '';
+
 $_lang['rentacar_option_err_name'] = 'Вы должны указать имя Опции.';
 $_lang['rentacar_option_err_ae'] = 'Опция с таким именем уже существует.';
 $_lang['rentacar_option_err_nf'] = 'Опция не найдена.';
 $_lang['rentacar_option_err_ns'] = 'Опция не указана.';
 $_lang['rentacar_option_err_remove'] = 'Ошибка при удалении Опции.';
 $_lang['rentacar_option_err_save'] = 'Ошибка при сохранении Опции.';
+
+$_lang['rentacar_car_err_name'] = 'Вы должны указать имя Авто.';
+$_lang['rentacar_car_err_ae'] = 'Авто с таким именем уже существует.';
+$_lang['rentacar_car_err_nf'] = 'Авто не найдено.';
+$_lang['rentacar_car_err_ns'] = 'Авто не указано.';
+$_lang['rentacar_car_err_remove'] = 'Ошибка при удалении Авто.';
+$_lang['rentacar_car_err_save'] = 'Ошибка при сохранении Авто.';
 
 $_lang['rentacar_warranty_err_name'] = 'Вы должны указать имя Страховки.';
 $_lang['rentacar_warranty_err_ae'] = 'Страховка с таким именем уже существует.';
@@ -98,7 +158,261 @@ $_lang["rentacar_phone_label"] = "Телефон";
 $_lang["rentacar_phone_placeholder"] = "+7 123 4567890";
 $_lang["rentacar_place_label"] = "Место/Город возврата";
 $_lang["rentacar_place_placeholder"] = "Афины аэропорт";
+$_lang["rentacar_timepickup_label"] = "Время начала аренды";
+$_lang["rentacar_timepickup_placeholder"] = "10:00";
+$_lang["rentacar_timedropoff_label"] = "Время конца аренды";
+$_lang["rentacar_timedropoff_placeholder"] = "10:00";
 
+// Опции авто
+$_lang['rentacar_dver'] = 'Количество дверей';
+$_lang['rentacar_autoclass'] = 'Класс автомобиля';
+$_lang['rentacar_condition'] = 'Кондиционер';
+$_lang['rentacar_dvigtype'] = 'Тип двигателя';
+$_lang['rentacar_dvigvolume'] = 'Объем двигателя';
+$_lang['rentacar_transmissions'] = 'Коробка передач';
+$_lang['rentacar_vmeschel'] = 'Вместимость (чел.)';
+$_lang['rentacar_vmessummax'] = 'Вместимость (большие сумки)';
+$_lang['rentacar_vmessummin'] = 'Вместимость (малые сумки)';
+$_lang['rentacar_vneshclasses'] = 'Тип кузова';
+$_lang['rentacar_option_autoclass'] = 'Класс автомобиля';
+$_lang['rentacar_option_condition'] = 'Кондиционер';
+$_lang['rentacar_option_dver'] = 'Количество дверей';
+$_lang['rentacar_option_dvigtype'] = 'Тип двигателя';
+$_lang['rentacar_option_dvigvolume'] = 'Объем двигателя';
+$_lang['rentacar_option_transmissions'] = 'Коробка передач';
+$_lang['rentacar_option_vmeschel'] = 'Вместимость (чел.)';
+$_lang['rentacar_option_vmessummax'] = 'Вместимость (большие сумки)';
+$_lang['rentacar_option_vmessummin'] = 'Вместимость (малые сумки)';
+$_lang['rentacar_option_vneshclasses'] = 'Внешняя классификация';
+$_lang['rentacar_freein'] = 'включено в стоимость';
+// Есть или нет
+$_lang['rentacar_yes'] = 'Да';
+$_lang['rentacar_no'] = 'Нет';
+
+
+$_lang['rentacar_main_slogan'] = 'Аренда авто в Греции без залога и предоплаты';
+$_lang['rentacar_main_1'] = 'Бронирование без предоплаты';
+$_lang['rentacar_main_2'] = 'Аренда без франшизы и кредитной карты';
+$_lang['rentacar_main_3'] = '350+ авто в отличном состоянии';
+
+$_lang['rentacar_label_region'] = 'Регион получения';
+$_lang['rentacar_label_place'] = 'Место получения';
+$_lang['rentacar_label_datefrom'] = 'Дата получения';
+$_lang['rentacar_label_dateto'] = 'Дата возврата';
+
+
+$_lang['rentacar_search_button'] = 'Найти машины';
+$_lang['rentacar_whats_free'] = 'Что входит в стоимость?';
+$_lang['rentacar_whats_free_1'] = 'Неограниченный пробег';
+$_lang['rentacar_whats_free_2'] = 'Любое количество детских кресел';
+$_lang['rentacar_whats_free_3'] = 'Быстрая замена при поломке';
+$_lang['rentacar_whats_free_4'] = 'Доставка в аэропорт с 8:00 до 21:00';
+$_lang['rentacar_whats_free_5'] = '24/7 дорожная служба';
+$_lang['rentacar_whats_free_6'] = 'Второй водитель в договоре';
+
+$_lang['rentacar_characters'] = 'Характеристики';
+$_lang['rentacar_aboutclient'] = 'Информация о клиенте';
+$_lang['rentacar_hold_without'] = 'Забронировать без оплаты';
+
+
+// Опции авто
+$_lang['rentacar_dver'] = 'Количество дверей';
+$_lang['rentacar_autoclass'] = 'Класс автомобиля';
+$_lang['rentacar_condition'] = 'Кондиционер';
+$_lang['rentacar_dvigtype'] = 'Тип двигателя';
+$_lang['rentacar_dvigvolume'] = 'Объем двигателя';
+$_lang['rentacar_transmissions'] = 'Коробка передач';
+$_lang['rentacar_vmeschel'] = 'Вместимость (чел.)';
+$_lang['rentacar_vmessummax'] = 'Вместимость (большие сумки)';
+$_lang['rentacar_vmessummin'] = 'Вместимость (малые сумки)';
+$_lang['rentacar_vneshclasses'] = 'Тип кузова';
+// Есть или нет
+$_lang['rentacar_yes'] = 'Да';
+$_lang['rentacar_no'] = 'Нет';
+// Информация об автомобиле
+$_lang['rentacar_options'] = 'Дополнительные опции';
+$_lang['rentacar_perday'] = '&#8364;/день';
+$_lang['rentacar_from'] = 'От';
+$_lang['rentacar_aboutauto'] = 'Об автомобиле';
+$_lang['rentacar_aboutclient'] = 'Информация о клиенте';
+$_lang['rentacar_additional'] = 'Дополнительная информация';
+// Формы
+$_lang['rentacar_name'] = 'Ф.И.О.';
+$_lang['rentacar_email'] = 'E-mail';
+$_lang['rentacar_phone'] = 'Телефон';
+$_lang['rentacar_mobilephone'] = 'Мобильный телефон';
+$_lang['rentacar_comment'] = 'Комментарий';
+$_lang['rentacar_agreeblock'] = 'Я согласен с <a href="[[~[[++price_page]]]]">Порядком оплаты</a> и <a href="[[~[[++agreement_page]]]]">Пользовательским соглашением</a>';
+$_lang['rentacar_bron'] = 'Забронировать';
+
+
+//add
+$_lang['rentacar_general_what_auto'] = 'Какой автомобиль вам нужен?';
+$_lang['rentacar_general_choose_auto'] = 'Выберите машину для проката из 350+ вариантов';
+$_lang['rentacar_look_all_auto'] = 'Смотреть все автомобили';
+$_lang['rentacar_premium'] = 'Премиум';
+$_lang['rentacar_standart'] = 'Стандарт';
+$_lang['rentacar_economy'] = 'Эконом';
+$_lang['rentacar_faster_answer'] = 'Быстрее всего отвечаем в рабочие часы.';
+$_lang['rentacar_ask_question'] = 'Есть вопросы по страховке или оплате? Отвечаем в течение 1 часа в рабочее время!';
+$_lang['rentacar_please_field'] = 'Пожалуйста, заполните поля помеченные *';
+$_lang['rentacar_message_success_send'] = 'Сообщение успешно отправлено, наш менеджер свяжеться с Вами в ближайшее время';
+$_lang['rentacar_work_for'] = 'Для кого мы работаем';
+$_lang['rentacar_help_hire_auto'] = 'Помогаем с прокатом автомобилей';
+$_lang['rentacar_rent_stage'] = 'Этапы аренды авто';
+$_lang['rentacar_how_rent'] = 'Как арендовать автомобиль в Grekostar';
+$_lang['rentacar_review_reward'] = 'Отзывы счастливых клиентов — лучшая награда';
+$_lang['rentacar_client_about_us'] = 'Что говорят о нас клиенты';
+$_lang['rentacar_who_we_are'] = 'Узнайте больше о том, кто мы';
+$_lang['rentacar_about_grekostar'] = 'О компании Grekostar';
+$_lang['rentacar_results_pride'] = 'Гордимся результатами';
+$_lang['rentacar_company_in_numeric'] = 'Компания в цифрах';
+$_lang['rentacar_all_time_ready'] = 'Всегда готовы помочь и проконсультировать';
+$_lang['rentacar_command_grekostar'] = 'Команда Grekostar';
+$_lang['rentacar_we_are_asked'] = 'О чём нас часто спрашивают';
+$_lang['rentacar_popular_faq'] = 'Популярные вопросы и ответы';
+$_lang['rentacar_share_info'] = 'Делимся нужной информацией';
+$_lang['rentacar_greece_blog'] = 'Ведем свой блог о Греции';
+$_lang['rentacar_view_all_entries'] = 'Смотреть все записи';
+$_lang['rentacar_dont_afrade'] = 'Не бойтесь сказать нам "Привет" :)';
+$_lang['rentacar_connect_all_time'] = 'Мы всегда на связи!';
+$_lang['rentacar_error_form'] = 'В форме содержатся ошибки!';
+$_lang['rentacar_send_success'] = 'Сообщение успешно отправлено!';
+
+$_lang['rentacar_what_question'] = 'Какой у вас вопрос?';
+$_lang['rentacar_your_email'] = 'Ваш e-mail';
+$_lang['rentacar_your_name'] = 'Ваше имя';
+$_lang['rentacar_question'] = 'Вопрос';
+$_lang['rentacar_subject'] = 'Тема';
+$_lang['rentacar_message'] = 'Сообщение';
+$_lang['rentacar_answer_me'] = 'Ответьте мне';
+$_lang['rentacar_required_field'] = 'Обязательное поле';
+$_lang['rentacar_communication_phone'] = 'Телефон поддержки';
+$_lang['rentacar_communication_time_work'] = 'Режим работы';
+$_lang['rentacar_communication_time_work_data'] = 'каждый день с 09:00 до 00:00';
+$_lang['rentacar_auto_form_caption'] = 'Заполните форму и выберите автомобиль';
+$_lang['rentacar_auto_form_country'] = 'Страна получения';
+$_lang['rentacar_auto_form_choose'] = 'Выберите';
+$_lang['rentacar_auto_form_region'] = 'Регион получения';
+$_lang['rentacar_auto_form_place'] = 'Место получения';
+$_lang['rentacar_auto_form_receiving_date'] = 'Дата получения';
+$_lang['rentacar_auto_form_receiving_time'] = 'Время получения';
+$_lang['rentacar_auto_form_return_date'] = 'Дата возврата';
+$_lang['rentacar_auto_form_return_time'] = 'Время возврата';
+$_lang['rentacar_auto_form_search'] = 'Найти';
+$_lang['rentacar_more_information'] = 'Подробнее';
+$_lang['rentacar_day'] = 'день';
+$_lang['rentacar_from'] = 'От';
+$_lang['rentacar_click_send_you_agree'] = 'Нажимая "Отправить", вы соглашаетесь с';
+$_lang['rentacar_confidential_policy'] = 'Политикой конфиденциальности';
+$_lang['rentacar_loading'] = 'Загрузка';
+$_lang['rentacar_country_residence'] = 'Страна проживания';
+$_lang['rentacar_flight_number'] = 'Номер рейса/авиакомпания';
+$_lang['rentacar_arrival_time'] = 'Время прилета';
+$_lang['rentacar_age'] = 'Возраст';
+$_lang['rentacar_driving_experience'] = 'Стаж вождения водителя';
+$_lang['rentacar_your_choose'] = 'Вы выбрали';
+$_lang['rentacar_total_sum'] = 'Итого';
+$_lang['rentacar_rent_terms'] = 'Условия аренды';
+$_lang['rentacar_bron_details'] = 'Детали бронирования';
+$_lang['rentacar_receipt_place'] = 'Место получения';
+$_lang['rentacar_no_detail_bron'] = 'Вы не указали детали бронирования.';
+$_lang['rentacar_error_submit'] = 'При оформлении заказа произошла ошибка. Попробуйте позже.';
+$_lang['rentacar_refresh_data'] = 'Обновить данные';
+$_lang['rentacar_or_analog'] = 'или аналогичный';
+$_lang['rentacar_cost_include'] = 'В стоимость включено';
+$_lang['rentacar_find_best_car'] = 'Фильтр';
+$_lang['rentacar_days_count'] = 'Количество дней';
+$_lang['rentacar_help_center'] = 'Центр поддержки';
+$_lang['rentacar_ask_any_questions'] = 'По любым вопросам обращайтесь по телефону или Email.';
+$_lang['rentacar_address'] = 'Адрес';
+$_lang['rentacar_contact_us'] = 'Наши контакты';
+$_lang['rentacar_contact_us_cyprus'] = 'Контакты Кипр';
+$_lang['rentacar_contact_form'] = 'Форма обратной связи';
+$_lang['rentacar_send'] = 'Отправить';
+$_lang['rentacar_contact_us_text'] = 'Этот описательный текст можно поменять для каждой языковой версии в отдельности.';
+$_lang['rentacar_all_discount'] = 'Все скидки для вас';
+$_lang['rentacar_find_best_car'] = 'Найдите лучшую машину';
+$_lang['rentacar_find_cheap_car'] = 'Поиск дешевых прокатных автомобилей в любом месте';
+$_lang['rentacar_whence'] = 'Откуда';
+$_lang['rentacar_where'] = 'Куда';
+$_lang['rentacar_date_departure'] = 'Дата отъезда';
+$_lang['rentacar_time_departure'] = 'Время отъезда';
+$_lang['rentacar_people_count'] = 'Кол-во человек';
+$_lang['rentacar_what_cost'] = 'Узнать стоимость';
+$_lang['rentacar_save'] = 'Сохранить';
+$_lang['rentacar_close'] = 'Закрыть';
+$_lang['rentacar_below'] = 'Не более';
+$_lang['rentacar_peolde_one'] = 'человек';
+
+
+$_lang['rentacar_option_autoclass'] = 'Класс автомобиля';
+$_lang['rentacar_option_condition'] = 'Кондиционер';
+$_lang['rentacar_option_dver'] = 'Количество дверей';
+$_lang['rentacar_option_dvigtype'] = 'Тип двигателя';
+$_lang['rentacar_option_dvigvolume'] = 'Объем двигателя';
+$_lang['rentacar_option_transmissions'] = 'Коробка передач';
+$_lang['rentacar_option_vmeschel'] = 'Вместимость (чел.)';
+$_lang['rentacar_option_vmessummax'] = 'Вместимость (большие сумки)';
+$_lang['rentacar_option_vmessummin'] = 'Вместимость (малые сумки)';
+$_lang['rentacar_option_vneshclasses'] = 'Внешняя классификация';
+
+
+$_lang['rentacar_uslovarend'] = 'Условия аренды';
+$_lang['rentacar_save'] = 'Сохранить';
+$_lang['rentacar_close'] = 'Закрыть';
+$_lang['rentacar_updinform'] = 'Обновить информацию о бронировании';
+$_lang['rentacar_seeallauto'] = 'Смотреть все автомобили';
+$_lang['rentacar_classauto'] = 'Класс автомобиля';
+$_lang['rentacar_typedv'] = 'Тип двигателя';
+$_lang['rentacar_typeauto'] = 'Тип автомобиля';
+$_lang['rentacar_vmest'] = 'Вместимость, чел.';
+$_lang['rentacar_transfer_h1'] = 'ТРАНСФЕР ПО СЕВЕРНОЙ ГРЕЦИИ';
+
+$_lang['rentacar_speedoffer'] = 'Быстрый заказ авто';
+$_lang['rentacar_namefam'] = 'Имя/Фамилия арендатора';
+$_lang['rentacar_vozstazh'] = 'Возраст/стаж вождения';
+$_lang['rentacar_mobiler'] = 'Моб. телефон';
+$_lang['rentacar_emailer'] = 'E-mail';
+$_lang['rentacar_kolvochel'] = 'Кол-во человек/багажа';
+$_lang['rentacar_placecitypickup'] = 'Место/город получения';
+$_lang['rentacar_placecitydropoff'] = 'Место/город возврата';
+$_lang['rentacar_timepickuper'] = 'Время прилета/получения';
+$_lang['rentacar_timedropoffer'] = 'Время вылета/Возврата';
+$_lang['rentacar_automer'] = 'Автомобиль';
+$_lang['rentacar_cmmenter'] = 'Комментарий';
+$_lang['rentacar_checkouttransfer'] = 'Заказать трансфер';
+
+$_lang['rentacar_namer'] = 'Наименование';
+$_lang['rentacar_kolver'] = 'Количество';
+$_lang['rentacar_pricer'] = 'Стоимость';
+$_lang['rentacar_otkuder'] = 'Откуда';
+$_lang['rentacar_kuder'] = 'Куда';
+$_lang['rentacar_rasster'] = 'Расстояние, км.';
+$_lang['rentacar_vrener'] = 'Время в пути, мин.';
+$_lang['rentacar_kolverchelver'] = 'Кол-во человек';
+$_lang['rentacar_zakazer'] = 'Заказать!';
+$_lang['rentacar_infozakazer'] = 'Данные о заказе';
+
+$_lang['rentacar_67'] = 'Дополнительное кресло / бустер 5+';
+$_lang['rentacar_68'] = '24/7 дорожная служба';
+$_lang['rentacar_62'] = 'Быстрая замена при поломке';
+$_lang['rentacar_66'] = 'Детское кресло / бустер 1 шт.';
+$_lang['rentacar_65'] = 'Дополнительный водитель';
+$_lang['rentacar_63'] = 'Доставка в аэропорт 8:00-21:00';
+$_lang['rentacar_64'] = 'Неограниченный пробег';
+$_lang['rentacar_free'] = 'бесплатно';
+$_lang['rentacar_perday'] = 'в день';
+$_lang['rentacar_freein'] = 'включено в стоимость';
+
+$_lang['rentacar_tudasuda'] = 'Туда-обратно';
+$_lang['rentacar_prices_desc'] = 'Это стоимость со стандартной страховкой с франшизой';
+
+$_lang['rentacar_all_rent'] = 'Аренда на [[+days]] дней';
+$_lang['rentacar_delivery'] = 'Доставка';
+$_lang['rentacar_warranty'] = 'Страховка';
+$_lang['rentacar_addition'] = 'Дополнительно';
+$_lang['rentacar_all'] = 'Итогο';
 
 /* --------------------- REGIONS ---------------- */
 

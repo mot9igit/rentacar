@@ -6,7 +6,10 @@ return [
         'description' => '',
         'events' => [
             'OnMODXInit' => [],
+			'OnWebPageInit' => [],
 			'OnHandleRequest' => [],
+			'msOnAddToCart' => [],
+			'msOnCreateOrder' => [],
         ],
     ],
 ];

@@ -112,6 +112,33 @@ Ext.extend(rentacar.window.CreateOption, MODx.Window, {
                     anchor: '100%'
                 }]
             }]
+        }, {
+            layout: 'column',
+            defaults: {msgTarget: 'under', border: false},
+            anchor: '100%',
+            items: [{
+                columnWidth: .33,
+                layout: 'form',
+                items: [{
+                    xtype: 'xcheckbox',
+                    boxLabel: _('rentacar_option_counted'),
+                    description: _('rentacar_option_counted'),
+                    name: 'counted',
+                    id: config.id + '-counted',
+                    anchor: '100%'
+                    }]
+                },{
+                columnWidth: .33,
+                layout: 'form',
+                items: [{
+                    xtype: 'xcheckbox',
+                    boxLabel: _('rentacar_option_hidden'),
+                    description: _('rentacar_option_hidden'),
+                    name: 'hidden',
+                    id: config.id + '-hidden',
+                    anchor: '100%'
+                }]
+            }]
         }]
     }
 });
@@ -229,6 +256,28 @@ Ext.extend(rentacar.window.UpdateOption, MODx.Window, {
                     description: _('rentacar_option_price_perday'),
                     name: 'price_perday',
                     id: config.id + '-price_perday',
+                    anchor: '100%'
+                }]
+            },{
+                columnWidth: .33,
+                layout: 'form',
+                items: [{
+                    xtype: 'xcheckbox',
+                    boxLabel: _('rentacar_option_counted'),
+                    description: _('rentacar_option_counted'),
+                    name: 'counted',
+                    id: config.id + '-counted',
+                    anchor: '100%'
+                }]
+            },{
+                columnWidth: .33,
+                layout: 'form',
+                items: [{
+                    xtype: 'xcheckbox',
+                    boxLabel: _('rentacar_option_hidden'),
+                    description: _('rentacar_option_hidden'),
+                    name: 'hidden',
+                    id: config.id + '-hidden',
                     anchor: '100%'
                 }]
             }]

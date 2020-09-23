@@ -1,7 +1,7 @@
-rentacar.grid.Options = function (config) {
+rentacar.grid.Cars = function (config) {
     config = config || {};
     if (!config.id) {
-        config.id = 'rentacar-grid-options';
+        config.id = 'rentacar-grid-cars';
     }
     Ext.applyIf(config, {
         url: rentacar.config.connector_url,
@@ -10,14 +10,14 @@ rentacar.grid.Options = function (config) {
         tbar: this.getTopBar(config),
         sm: new Ext.grid.CheckboxSelectionModel(),
         baseParams: {
-            action: 'mgr/option/getlist',
+            action: 'mgr/car/getlist',
             sort: 'id',
             dir: 'desc'
         },
         listeners: {
             rowDblClick: function (grid, rowIndex, e) {
                 var row = grid.store.getAt(rowIndex);
-                this.updateOption(grid, e, row);
+                this.updateCar(grid, e, row);
             }
         },
         viewConfig: {
@@ -36,7 +36,7 @@ rentacar.grid.Options = function (config) {
         remoteSort: true,
         autoHeight: true,
     });
-    rentacar.grid.Options.superclass.constructor.call(this, config);
+    rentacar.grid.Cars.superclass.constructor.call(this, config);
 
     // Clear selection on grid refresh
     this.store.on('load', function () {
@@ -45,13 +45,12 @@ rentacar.grid.Options = function (config) {
         }
     }, this);
 };
-Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
+Ext.extend(rentacar.grid.Cars, MODx.grid.Grid, {
     windows: {},
-
     getTopBar: function () {
         return [{
-            text: '<i class="icon icon-plus"></i>&nbsp;' + _('rentacar_option_create'),
-            handler: this.createOption,
+            text: '<i class="icon icon-plus"></i>&nbsp;' + _('rentacar_car_create'),
+            handler: this.createCar,
             scope: this
         }, '->', {
             xtype: 'rentacar-field-search',
@@ -73,76 +72,54 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
     },
 
     getFields: function () {
-        return ['id', 'name', 'price', 'free_count', 'price_perday', 'counted', 'type', 'checked','description', 'active', 'actions'];
+        return ['id', 'name', 'photo', 'number', 'resource_n', 'region_n', 'description', 'active', 'actions' ];
     },
 
     getColumns: function () {
         return [{
-            header: _('rentacar_option_id'),
+            header: _('rentacar_car_id'),
             dataIndex: 'id',
             sortable: true,
             width: 70
         }, {
-            header: _('rentacar_option_name'),
+            header: _('rentacar_car_name'),
             dataIndex: 'name',
             sortable: true,
             width: 200,
         }, {
-            header: _('rentacar_option_price'),
-            dataIndex: 'price',
-            //xtype: 'numberfield',
-            decimalPrecision: 2,
+            header: _('rentacar_car_photo'),
+            dataIndex: 'photo',
+            renderer: rentacar.utils.renderImage,
+            width: 200,
+        }, {
+            header: _('rentacar_car_number'),
+            dataIndex: 'number',
             sortable: true,
             width: 200,
         }, {
-            header: _('rentacar_option_type'),
-            dataIndex: 'type',
-            renderer: rentacar.utils.renderOptionType,
-            sortable: true,
-            width: 200,
-        }, {
-            header: _('rentacar_option_free_count'),
-            dataIndex: 'free_count',
+            header: _('rentacar_car_resource'),
+            dataIndex: 'resource_n',
             //xtype: 'numberfield',
             sortable: true,
             width: 200,
         }, {
-            header: _('rentacar_option_price_perday'),
-            dataIndex: 'price_perday',
-            renderer: rentacar.utils.renderBoolean,
+            header: _('rentacar_car_region'),
+            dataIndex: 'region_n',
             sortable: true,
             width: 100,
         }, {
-            header: _('rentacar_option_counted'),
-            dataIndex: 'counted',
-            renderer: rentacar.utils.renderBoolean,
-            sortable: true,
-            width: 100,
-        }, {
-            header: _('rentacar_option_checked'),
-            dataIndex: 'checked',
-            renderer: rentacar.utils.renderBoolean,
-            sortable: true,
-            width: 100,
-        }, {
-            header: _('rentacar_option_description'),
+            header: _('rentacar_car_description'),
             dataIndex: 'description',
             sortable: false,
             width: 250,
         }, {
-            header: _('rentacar_option_active'),
+            header: _('rentacar_car_active'),
             dataIndex: 'active',
             renderer: rentacar.utils.renderBoolean,
             sortable: true,
             width: 100,
         }, {
-            header: _('rentacar_option_hidden'),
-            dataIndex: 'hidden',
-            renderer: rentacar.utils.renderBoolean,
-            sortable: true,
-            width: 100,
-        }, {
-            header: _('rentacar_option_actions'),
+            header: _('rentacar_car_actions'),
             dataIndex: 'actions',
             renderer: rentacar.utils.renderActions,
             sortable: false,
@@ -160,9 +137,9 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         this.addContextMenuItem(menu);
     },
 
-    createOption: function (btn, e) {
+    createCar: function (btn, e) {
         var w = MODx.load({
-            xtype: 'rentacar-option-window-create',
+            xtype: 'rentacar-car-window-create',
             id: Ext.id(),
             listeners: {
                 success: {
@@ -177,7 +154,7 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         w.show(e.target);
     },
 
-    updateOption: function (btn, e, row) {
+    updateCar: function (btn, e, row) {
         if (typeof(row) != 'undefined') {
             this.menu.record = row.data;
         }
@@ -189,14 +166,14 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/option/get',
+                action: 'mgr/car/get',
                 id: id
             },
             listeners: {
                 success: {
                     fn: function (r) {
                         var w = MODx.load({
-                            xtype: 'rentacar-option-window-update',
+                            xtype: 'rentacar-car-window-update',
                             id: Ext.id(),
                             record: r,
                             listeners: {
@@ -216,21 +193,21 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         });
     },
 
-    removeOption: function () {
+    removeCar: function () {
         var ids = this._getSelectedIds();
         if (!ids.length) {
             return false;
         }
         MODx.msg.confirm({
             title: ids.length > 1
-                ? _('rentacar_options_remove')
-                : _('rentacar_option_remove'),
+                ? _('rentacar_cars_remove')
+                : _('rentacar_car_remove'),
             text: ids.length > 1
-                ? _('rentacar_options_remove_confirm')
-                : _('rentacar_option_remove_confirm'),
+                ? _('rentacar_cars_remove_confirm')
+                : _('rentacar_car_remove_confirm'),
             url: this.config.url,
             params: {
-                action: 'mgr/option/remove',
+                action: 'mgr/car/remove',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -244,7 +221,7 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         return true;
     },
 
-    disableOption: function () {
+    disableCar: function () {
         var ids = this._getSelectedIds();
         if (!ids.length) {
             return false;
@@ -252,7 +229,7 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/option/disable',
+                action: 'mgr/car/disable',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -265,7 +242,7 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         })
     },
 
-    enableOption: function () {
+    enableCar: function () {
         var ids = this._getSelectedIds();
         if (!ids.length) {
             return false;
@@ -273,7 +250,7 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         MODx.Ajax.request({
             url: this.config.url,
             params: {
-                action: 'mgr/option/enable',
+                action: 'mgr/car/enable',
                 ids: Ext.util.JSON.encode(ids),
             },
             listeners: {
@@ -328,4 +305,4 @@ Ext.extend(rentacar.grid.Options, MODx.grid.Grid, {
         this.getBottomToolbar().changePage(1);
     },
 });
-Ext.reg('rentacar-grid-options', rentacar.grid.Options);
+Ext.reg('rentacar-grid-cars', rentacar.grid.Cars);

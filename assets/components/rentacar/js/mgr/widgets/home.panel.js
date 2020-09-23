@@ -26,7 +26,7 @@ rentacar.panel.Home = function (config) {
                     html: _('rentacar_cars_intro_msg'),
                     cls: 'panel-desc',
                     }, {
-                        //xtype: 'rentacar-cars-grid-items',
+                        xtype: 'rentacar-grid-cars',
                         cls: 'main-wrapper',
                     }]
                 },{

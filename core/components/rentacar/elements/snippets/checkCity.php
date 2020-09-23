@@ -1,6 +1,7 @@
 <?php
 // ?tv|country=27
-$site = substr($modx->getOption("site_url"), 0, -1);
+$site_url = "https://".$_SERVER['HTTP_HOST'];
+$site = $site_url;
 $requestos = $site.$_SERVER['REQUEST_URI'];
 $requestos = str_replace("&showactual=1", "", $requestos);
 

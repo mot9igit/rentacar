@@ -16,7 +16,7 @@ rentacar.utils.renderImage = function (value) {
         }
     }
 
-    return String.format('<img src="{0}" />', value);
+    return String.format('<img src="{0}" width="100"/>', value);
 };
 
 rentacar.utils.renderOptionType = function (value) {

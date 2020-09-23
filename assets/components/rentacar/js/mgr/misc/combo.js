@@ -69,3 +69,50 @@ rentacar.combo.type = function(config) {
 };
 Ext.extend(rentacar.combo.type,MODx.combo.ComboBox);
 Ext.reg('combo-type',rentacar.combo.type);
+
+// регионы
+rentacar.combo.Region = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        name: 'region'
+        ,hiddenName: 'region'
+        ,displayField: 'pagetitle'
+        ,valueField: 'id'
+        ,fields: ['id','pagetitle']
+        ,pageSize: 10
+        ,hideMode: 'offsets'
+        ,url: rentacar.config['connector_url']
+        ,baseParams: {
+            action: 'mgr/resource/getlist',
+            combo: true,
+            parent: 27
+        }
+    });
+    rentacar.combo.Region.superclass.constructor.call(this,config);
+};
+Ext.extend(rentacar.combo.Region,MODx.combo.ComboBox);
+Ext.reg('rentacar-combo-region',rentacar.combo.Region);
+
+// ресурсы
+rentacar.combo.Products = function(config) {
+    config = config || {};
+    Ext.applyIf(config,{
+        name: 'resource'
+        ,hiddenName: 'resource'
+        ,displayField: 'pagetitle'
+        ,valueField: 'id'
+        ,fields: ['id','pagetitle']
+        ,pageSize: 10
+        ,hideMode: 'offsets'
+        ,url: rentacar.config['connector_url']
+        ,baseParams: {
+            action: 'mgr/resource/getlist',
+            combo: true,
+            parent: 3,
+            class_key: "msProduct"
+        }
+    });
+    rentacar.combo.Products.superclass.constructor.call(this,config);
+};
+Ext.extend(rentacar.combo.Products,MODx.combo.ComboBox);
+Ext.reg('rentacar-combo-resource',rentacar.combo.Products);

@@ -54,5 +54,15 @@ return [
 		'file' => 'getCarWarrantys',
 		'description' => 'getCarWarrantys',
 		'properties' => [],
+	],
+	'getAutos' => [
+		'file' => 'getAutos',
+		'description' => 'getAutos',
+		'properties' => [],
+	],
+	'shahmat' => [
+		'file' => 'shahmat',
+		'description' => 'shahmat',
+		'properties' => [],
 	]
 ];
