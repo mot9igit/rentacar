@@ -46,6 +46,14 @@ var rentacar = {
                 }
             });
         });
+        $(".new_offer").click(function(e) {
+            e.preventDefault();
+            var car = $(this).data("auto");
+            var fdw = $(this).data("fdw");
+            $("#new_offer .carchoice").val(car);
+            $("#new_offer .cler .price").text("€ "+fdw);
+            $("#new_offer").modal("show");
+        });
         $(rentacarConfig['formFormSelector']).submit(function(e) {
             e.preventDefault();
             var msg = $(this).serialize();

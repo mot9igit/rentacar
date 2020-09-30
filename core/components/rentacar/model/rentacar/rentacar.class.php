@@ -153,7 +153,12 @@ class rentacar
 				$data['datefrom'] = strtotime(str_replace(".", "-", $data["datepickup"]).' '.$data["timepickup"]);
 				$data['dateto'] = strtotime(str_replace(".", "-", $data["datedropoff"]).' '.$data["timedropoff"]);
 				$_SESSION["cardata"] = $this->getTiming($data);
-
+				if($_REQUEST["carchoice"]){
+					$car = $this->modx->getObject("rentacar_cars", $_REQUEST["carchoice"]);
+					if($car){
+						$_REQUEST["resource"] = $car->get("resource");
+					}
+				}
 				$_SESSION["cars"][$_REQUEST["resource"]] = $this->calculate($_REQUEST["resource"], $_SESSION["cardata"]);
 				$this->modx->log(1, print_r($_SESSION["cardata"], 1));
 				$this->modx->log(1, print_r($_REQUEST, 1));
@@ -254,7 +259,7 @@ class rentacar
 	 *
 	 * @return int
 	 */
-	public function calcOptionPrice($id, $count = 1){
+	public function calcOptionPrice($id, $count = 1, $all){
 		$option = $this->modx->getObject("rentacar_cars_options", $id);
 		$defprice = 0;
 		if ($option){
@@ -264,7 +269,7 @@ class rentacar
 					$defprice = 0;
 				}else{
 					$koe = $count - $opt["free_count"];
-					$defprice = $opt["price"]*$_SESSION["cardata"]["all"]*$koe;
+					$defprice = $opt["price"]*$all*$koe;
 				}
 			}else{
 				if($count <= $opt["free_count"]){
@@ -318,7 +323,7 @@ class rentacar
 		if($data["name"] == "option[]"){
 			$option_data = array(
 				"id" => $data["value"],
-				"price" => $this->calcOptionPrice($data["value"], $data["count"]),
+				"price" => $this->calcOptionPrice($data["value"], $data["count"], $_SESSION["cardata"]['all']),
 				"count" => $data["count"]
 			);
 			$_SESSION["cardata"]["options"][$data["value"]] = $option_data;
@@ -376,7 +381,7 @@ class rentacar
 				if($option){
 					$option_data = array(
 						"id" => $option->id."_from",
-						"price" => $this->calcOptionPrice($option->id, 1),
+						"price" => $this->calcOptionPrice($option->id, 1, $_SESSION["cardata"]['all']),
 						"count" => 1
 					);
 					$_SESSION["cardata"]["deliverys"][$option->id."_from"] = $option_data;
@@ -401,7 +406,7 @@ class rentacar
 				if($option){
 					$option_data = array(
 						"id" => $option->id."_to",
-						"price" => $this->calcOptionPrice($option->id, 1),
+						"price" => $this->calcOptionPrice($option->id, 1, $_SESSION["cardata"]['all']),
 						"count" => 1
 					);
 					$_SESSION["cardata"]["deliverys"][$option->id."_to"] = $option_data;
@@ -423,7 +428,7 @@ class rentacar
 		if($data["name"] == "count") {
 			if (isset($_SESSION["cardata"]["options"][$data["option"]])) {
 				$_SESSION["cardata"]["options"][$data["option"]]["count"] = $data["value"];
-				$_SESSION["cardata"]["options"][$data["option"]]["price"] = $this->calcOptionPrice($data["option"], $data["value"]);
+				$_SESSION["cardata"]["options"][$data["option"]]["price"] = $this->calcOptionPrice($data["option"], $data["value"], $_SESSION["cardata"]['all']);
 				$price = $this->updateOptionPrice($_SESSION["cardata"]);
 				$_SESSION["cardata"]["options_price"] = $price;
 			}
@@ -488,7 +493,7 @@ class rentacar
 		foreach($options as $option){
 			$option_data = array(
 				"id" => $option->id,
-				"price" => $this->calcOptionPrice($option->id),
+				"price" => $this->calcOptionPrice($option->id, 1, $_SESSION["cardata"]['all']),
 				"count" => 1
 			);
 			$_SESSION["cardata"]["options"][$option->id] = $option_data;
@@ -855,7 +860,7 @@ class rentacar
 						}
 						$option_data = array(
 							"id" => $option,
-							"price" => $this->calcOptionPrice($option, $count),
+							"price" => $this->calcOptionPrice($option, $count, $result['cardata']['all']),
 							"count" => $count
 						);
 						$result['cardata']["options"][$option] = $option_data;
@@ -863,6 +868,7 @@ class rentacar
 						$result['cardata']["options_price"] = $price;
 					}
 				}
+				$this->modx->log(1, print_r($result['cardata'], 1));
 				// страховка
 				if($data['warranty']){
 					$warranty_data = array(
@@ -896,7 +902,7 @@ class rentacar
 						if($option){
 							$option_data = array(
 								"id" => $option->id."_from",
-								"price" => $this->calcOptionPrice($option->id, 1),
+								"price" => $this->calcOptionPrice($option->id, 1, $result['cardata']['all']),
 								"count" => 1
 							);
 							$result['cardata']["deliverys"][$option->id."_from"] = $option_data;
@@ -912,7 +918,7 @@ class rentacar
 						if($option){
 							$option_data = array(
 								"id" => $option->id."_to",
-								"price" => $this->calcOptionPrice($option->id, 1),
+								"price" => $this->calcOptionPrice($option->id, 1, $result['cardata']['all']),
 								"count" => 1
 							);
 							$result['cardata']["deliverys"][$option->id."_to"] = $option_data;
@@ -967,8 +973,8 @@ class rentacar
 	public function calculate($id, $data)
 	{
 		$car = $this->modx->getObject("msProduct", $id);
-		$this->modx->log(1, print_r($data, 1).' '.$car->get("id"));
 		if ($car) {
+			$this->modx->log(1, print_r($data, 1).' '.$car->get("id"));
 			$file = '';
 			$type = $car->getTVValue("vnutrclasses");
 
@@ -1194,7 +1200,7 @@ class rentacar
 			$dateto = $_SESSION["cardata"]["dateto"];
 			$alldays = $_SESSION["cardata"]["all"];
 			// SAVE miniShop2 order
-			if ($_POST['resource'] && $_POST['name'] && $_POST["email"]) {
+			if ($data['resource'] && $data['name'] && $data["email"]) {
 				$scriptProperties = array(
 					'json_response' => true,
 					'max_count' => 1000,

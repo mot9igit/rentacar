@@ -35,7 +35,6 @@ if($datefrom && $dateto && $region){
 	}
 
 	$criteria = array(
-
 		"region" => $region
 	);
 	if(count($arr)){
@@ -58,13 +57,36 @@ if($datefrom && $dateto && $region){
 	$data['region'] = $region;
 	$place = $modx->getObject("modResource", array("parent" => $region));
 	$data['placepickup'] = $place->get("id");
+	$autos = array();
+	$auters = array();
+	$dater = array();
 	foreach($resources as $res){
 		$car_id = $res->get("id");
 		$resource = $res->get("resource");
-		$data['autos'][$car_id]["car"] = $res->toArray();
-		$data['autos'][$car_id]["timedata"] = $rentacar->getTiming($data);
-		$data['autos'][$car_id]["calcdata"] = $rentacar->calculate($resource, $data['autos'][$car_id]["timedata"]);
-		$autos[] = $car_id;
+		$par = $modx->getObject("modResource", $resource);
+		if($par){
+			$class = $par->getTVValue("vnutrclasses");
+			if($class){
+				$par = $modx->getObject("modResource", $class);
+				if($par){
+					$class = $par->get("pagetitle");
+				}
+			}
+		}
+		$dater['autos'][$car_id]["car"] = $res->toArray();
+		$dater['autos'][$car_id]["class"] = $class;
+		$dater['autos'][$car_id]["timedata"] = $rentacar->getTiming($data);
+		$dater['autos'][$car_id]["calcdata"] = $rentacar->calculate($resource, $dater['autos'][$car_id]["timedata"]);
+		$autos[$class][] = $car_id;
+		$auters[] = $car_id;
+	}
+
+	ksort($autos);
+
+	foreach($autos as $key => $val){
+		foreach($val as $v){
+			$data['autos'][$v] = $dater['autos'][$v];
+		}
 	}
 
 	$start = new DateTime($datefrom);
@@ -83,7 +105,7 @@ if($datefrom && $dateto && $region){
 	$criteria = array(
 		"date_on:<=" => $end->format("Y-m-d H:i:s"),
 		"date_off:>=" => $start->format("Y-m-d H:i:s"),
-		"car_id:IN" => $autos
+		"car_id:IN" => $auters
 	);
 
 	$brons = $modx->getCollection("rentacar_cars_avaible", $criteria);
@@ -107,7 +129,7 @@ if($datefrom && $dateto && $region){
 			$auto_start = new DateTime($off['date_on']);
 			$auto_end = new DateTime($off['date_off']);
 			$auto_step = new DateInterval('P1D');
-			$auto_period = new DatePeriod($auto_start, $auto_step, $auto_end);
+			$auto_period = new DatePeriod($auto_start, $auto_step, $auto_end->modify( '+1 Day' ));
 			foreach($auto_period as $datetime) {
 				$off['dates'][] = $datetime->format("d.m.Y");
 			}
@@ -116,6 +138,7 @@ if($datefrom && $dateto && $region){
 			$data['autos'][$bron->get("car_id")]['brons'][] = $off;
 		}
 	}
+	$modx->log(1, print_r($data['autos'], 1));
 	$criteria = array(
 		"datefrom:<=" => $end->format("Y-m-d H:i:s"),
 		"dateto:>=" => $start->format("Y-m-d H:i:s"),
